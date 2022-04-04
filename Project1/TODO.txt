@@ -1,0 +1,29 @@
+﻿TODO:
+	*Add customer to database:POST
+	*Search customer:GET
+	*List all customers:GET
+	*Place customer order:PUT
+		-Check if in stock:GET
+		-Update stock:PATCH
+		-Create order, associate with customer via FK:PUT
+	*List a customer's orders
+		-Search for orders with FK->Customer PK
+	*List Orders
+	*Search Orders by orderID
+	*Get all of a customers orders via customerID.
+	*View invoice for a customer
+		-Display orders, respective totals, and final total.
+
+OPTIONAL:
+	Authentication with Authorization levels
+	Query Model
+	NonQuery Model(s)
+	Delivered checks for ordered items.
+		-Items delivered counter/something like that.
+		-Once it reaches the order total, order attribute delivered = true.
+			-Gotta implement the attribute and create counter table.
+				~DIAGRAM IT OUT FIRST
+	User data table
+		-Date of purchases
+		-Category of items
+		-Total amount spent.
