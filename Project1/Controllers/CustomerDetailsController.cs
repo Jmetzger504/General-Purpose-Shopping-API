@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Project1.Models;
 using Project1.Models.OrderModels;
@@ -8,7 +9,7 @@ namespace Project1.Controllers
     {
         CustomerDetails detailsModel = new CustomerDetails();
         Customer customerModel = new Customer();
-        
+
         #region Add Customer
         [HttpPost]
         [Route("addCustomer")]
@@ -16,9 +17,9 @@ namespace Project1.Controllers
         {
             
             try {
-                return Created("", detailsModel.AddCustomer(newCustomer));
+                return Created("Customer successfully added!", detailsModel.AddCustomer(newCustomer));
             }
-            catch (System.Exception ex) {
+            catch (Exception ex) {
                 return BadRequest(ex.Message);
             }
         }
@@ -60,7 +61,7 @@ namespace Project1.Controllers
         }
         #endregion
 
-        #region 
+        #region  Get Customer Invoice
         [HttpGet]
         [Route("customerInvoice")]
         public IActionResult orderInvoice(int customerID)
@@ -77,6 +78,59 @@ namespace Project1.Controllers
         }
         #endregion
 
-        
+        #region Deposit Customer Funds
+        [HttpPost]
+        [Route("depositCustomerFunds")]
+        public IActionResult depositFunds(int Id,double deposit)
+        {
+            //Validate input
+            if (deposit < 0)
+                return BadRequest("Only positive funds, friend.");
+            else if (Id <= 0)
+                return BadRequest("Please input a valid ID number");
+            //Get current balance
+            try
+            {
+                Customer customer = customerModel.searchCustomer(Id);
+                double balance = customer.Balance;
+                customer.Balance += deposit;
+                customer.updateBalance();
+                return Ok("Funds succesfully added for " + customer.Name + "\n" +
+                    "Customer ID: " + customer.Id + "\n" +
+                    "Deposit Amount: $" + Math.Round(deposit, 2) + "\n" +
+                    "New Balance: $" + Math.Round(customer.Balance, 2));  ;
+            }
+            catch(System.Exception ex) { return BadRequest(ex.Message); }
+
+
+
+        }
+        #endregion
+
+        #region Delete Customer
+        [HttpDelete]
+        [Route("deleteCustomer")]
+        public IActionResult deleteCustomer(int Id)
+        {
+            if (Id <= 0)
+                return BadRequest("Only valid ID numbers please.");
+
+            Customer customer;
+            
+            try 
+            {
+                customer = customerModel.searchCustomer(Id);
+            }
+            catch(System.Exception ex) { return NotFound(ex.Message); }
+
+            try
+            {
+                customer.deleteCustomer();
+                return Ok("Customer account successfully deleted!");
+            }
+            catch (System.Exception ex) { return NotFound(ex.Message); }
+        }
+        #endregion
+
     }
 }

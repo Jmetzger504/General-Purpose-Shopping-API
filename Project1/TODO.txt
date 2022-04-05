@@ -13,11 +13,13 @@
 	*Get all of a customers orders via customerID.
 	*View invoice for a customer
 		-Display orders, respective totals, and final total.
-
+	*Delete Stock Item
+	Delete Customer
+	
 OPTIONAL:
+	Cancel Order
+	Cancel Item in Order
 	Authentication with Authorization levels
-	Query Model
-	NonQuery Model(s)
 	Delivered checks for ordered items.
 		-Items delivered counter/something like that.
 		-Once it reaches the order total, order attribute delivered = true.

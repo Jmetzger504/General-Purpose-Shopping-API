@@ -4,12 +4,15 @@ namespace Project1.Models
 {
     public class Customer
     {
+        #region Properties
         public int Id { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
         public string Address { get; set; }
         public double Balance { get; set; }
         public double invoiceTotal { get; set; }
+        #endregion
+
         SqlConnection con = new SqlConnection("server=DESKTOP-VE9QC92\\TRAINERINSTANCE;database=shoppingApp; integrated security=true");
        
         #region Search Customer by ID
@@ -41,6 +44,22 @@ namespace Project1.Models
         }
         #endregion
 
+        #region Update Customer Balance
+        public void updateBalance()
+        {
+            SqlCommand updateBalance = new SqlCommand("update Customer set Balance = @Balance where ID = @Id", con);
+            updateBalance.Parameters.AddWithValue("@Balance",Balance);
+            updateBalance.Parameters.AddWithValue("@Id",Id);
+
+            try
+            {
+                con.Open();
+                updateBalance.ExecuteNonQuery();
+            }
+            catch(SqlException ex) { throw new Exception(ex.Message); }
+        }
+        #endregion
+
         #region Update Customer balance and invoice total
         public void updateCustomerInvoice()
         {
@@ -59,5 +78,20 @@ namespace Project1.Models
         }
         #endregion
 
+        #region Delete Customer
+        public void deleteCustomer()
+        {
+            SqlCommand deleteCustomer = new SqlCommand("delete from Customer where ID = @Id", con);
+            deleteCustomer.Parameters.AddWithValue("@Id", Id);
+
+            try
+            {
+                con.Open();
+                deleteCustomer.ExecuteNonQuery();
+            }
+            catch(SqlException ex) { throw new Exception(ex.Message); }
+            finally { con.Close(); }
+        }
+        #endregion
     }
 }
