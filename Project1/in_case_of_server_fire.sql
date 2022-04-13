@@ -40,7 +40,7 @@ insert into Stock (Name,Category,Price,Quantity,Brand) values
 
 create table Orders (
 	orderID int identity(1,1) primary key,
-	customerID int foreign key references Customer(ID),
+	customerID int foreign key references Customer(ID) on delete cascade,
 	orderTotal money
 )
 
@@ -50,8 +50,8 @@ insert into Orders values (1,52),(2,101747),(1,97),(4,500000),(3,1),(1,5),(4,800
 
 
 create table OrderedItems (
-	orderID int foreign key references Orders(orderID),	--Order the item is a part of
-	itemID int foreign key references Stock(ID),	--What item was ordered
+	orderID int foreign key references Orders(orderID) on delete cascade,	--Order the item is a part of
+	itemID int foreign key references Stock(ID) on delete cascade,	--What item was ordered
 	Amount int not null, --How much of it they ordered
 )
 insert into OrderedItems values

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "yPpEM7+0Zxx5ucz3TGH5F4f4JsOPCV1/TMBKU1OqU5yk5OV4w8gdYJ8seJ+UU+p+vE9hvS8IGXIy+Dxs4IPY5g==",
+  "dgSpecHash": "jh8LHOF5okqj0S5iOtF8+ItKXbgkEynt4np5X+hWG3iOyk2tbRX1UY2JFpnakIN7pPh5/UogmjwzJi5FeLhgRw==",
   "success": true,
-  "projectFilePath": "D:\\repos\\Project1\\Project1\\Project1.csproj",
+  "projectFilePath": "D:\\repos\\revatureProjects\\Project1\\Project1\\Project1.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\jmetz\\.nuget\\packages\\microsoft.azure.services.appauthentication\\1.4.0\\microsoft.azure.services.appauthentication.1.4.0.nupkg.sha512",
     "C:\\Users\\jmetz\\.nuget\\packages\\microsoft.csharp\\4.5.0\\microsoft.csharp.4.5.0.nupkg.sha512",

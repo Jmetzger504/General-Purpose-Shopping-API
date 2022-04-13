@@ -61,22 +61,7 @@ namespace Project1.Models.StockModels
         }
         #endregion
 
-        #region Update Stock Price
-        public void updatePrice(int Id, double Price)
-        {
-            SqlCommand updatePrice = new SqlCommand("update Stock set Price = @Price where ID = @ID", con);
-            updatePrice.Parameters.AddWithValue("@Price", Price);
-            updatePrice.Parameters.AddWithValue("@ID", Id);
-
-            try
-            {
-                con.Open();
-                updatePrice.ExecuteNonQuery();
-            }
-            catch(SqlException ex) { throw new Exception(ex.Message); }
-            finally { con.Close(); }
-        }
-        #endregion
+        
 
        
 

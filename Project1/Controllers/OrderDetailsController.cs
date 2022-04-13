@@ -50,7 +50,7 @@ namespace Project1.Controllers
 
         #region Place Order
         [HttpPost]
-        [Route("PlaceOrder")]
+        [Route("placeOrder")]
         //FIX THIS INPUT FORMAT
         public IActionResult placeOrder(int customerID, List<int> itemID,List<int> itemAmount)
         {

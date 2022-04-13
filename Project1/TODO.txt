@@ -6,26 +6,61 @@
 		-Check if in stock:GET
 		-Update stock:PATCH
 		-Create order, associate with customer via FK:PUT
-	*List a customer's orders
+	*List a customer's orders:GET
 		-Search for orders with FK->Customer PK
-	*List Orders
-	*Search Orders by orderID
-	*Get all of a customers orders via customerID.
-	*View invoice for a customer
+	*List Orders:GET
+	*Search Orders by orderID:GET
+	*Get all of a customers orders via customerID:GET
+	*View invoice for a customer:GET
 		-Display orders, respective totals, and final total.
-	*Delete Stock Item
-	Delete Customer
+	*Delete Stock Item:DELETE
+	*Delete Customer:DELETE
+	*Update Stock Price: PUT
+	*Restock Stock Quantity: PUT
+	Make sure BRAWNDO product stock quantities are always the same: Sql trigger
+~--------------------------------------------------------------------~
+
+QUICKFIX:
+	Increase maximum length of varchar fields for non-serilog attributes where necessary (name,category, etc.)
 	
-OPTIONAL:
+INCOMPLETE:
+Order data:
+	-Pending/Complete status
+	-Order purchase date
+	-Order completion date
+Customer deletion:
+	-Restock incomplete orders
+	-Only allow customer deletes for customers with no pending orders?
+Improve Logging Message readability
+Tag logged exceptions
+Implement status codes for:
+		-Insufficient funds for order 
+		-Invalid deposit amount
+		-Possibly more, need to exhaustively check.
+
+FUTURE TODO:
+	Search/Filter customers by:
+		-Name
+		-Email
+		-Corresponding Order ID(s)
+	Unique and Valid Email Verification for New Customers.
+	Update Customer information
 	Cancel Order
-	Cancel Item in Order
+		-included refund to customer
+	Cancel specific Item in Order
+		-with refund
 	Authentication with Authorization levels
-	Delivered checks for ordered items.
-		-Items delivered counter/something like that.
-		-Once it reaches the order total, order attribute delivered = true.
+	Delivery checks for ordered items.
+		-Items have a boolean for if they are delivered.
+		-Once all items are delivered, the order attribute delivered = true.
 			-Gotta implement the attribute and create counter table.
 				~DIAGRAM IT OUT FIRST
-	User data table
-		-Date of purchases
-		-Category of items
-		-Total amount spent.
+	Stock data:
+		Subcategories
+	Customer data
+		-Customer creation date
+		-Customer login dates
+		-Customer invoice pertaining to categories ordered.
+		-Total amount spent per category
+	
+		

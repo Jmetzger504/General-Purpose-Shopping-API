@@ -60,6 +60,23 @@ namespace Project1.Models
         }
         #endregion
 
+        #region Update Stock Price
+        public void updatePrice(double Price)
+        {
+            SqlCommand updatePrice = new SqlCommand("update Stock set Price = @Price where ID = @ID", con);
+            updatePrice.Parameters.AddWithValue("@Price", Price);
+            updatePrice.Parameters.AddWithValue("@ID", Id);
+
+            try
+            {
+                con.Open();
+                updatePrice.ExecuteNonQuery();
+            }
+            catch (SqlException ex) { throw new Exception(ex.Message); }
+            finally { con.Close(); }
+        }
+        #endregion
+
         #region Delete Stock Item
         public void deleteStockItem()
         {
@@ -75,5 +92,7 @@ namespace Project1.Models
             finally { con.Close(); }
         }
         #endregion
+
+
     }
 }

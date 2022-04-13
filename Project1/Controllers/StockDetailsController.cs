@@ -90,14 +90,40 @@ namespace Project1.Controllers
             {
                 stock = stockModel.searchStock(Id);
             }
-            catch(System.Exception ex) { return NotFound("Item with this ID number not found!"); }
+            catch(System.Exception) { return NotFound("Item with this ID number not found!"); }
             
             try
             {
                 stock.deleteStockItem();
                 return Ok("Item succesfully deleted!");
             }
-            catch(System.Exception ex) { return BadRequest("Some catastrophic error has occured beyond my mortal comprehension."); }
+            catch(System.Exception) { return BadRequest("Some catastrophic error has occured beyond my mortal comprehension."); }
+        }
+        #endregion
+
+        #region Update stock price
+        [HttpPut]
+        [Route("updatePrice")]
+        public IActionResult updatePrice(int ID,double Price)
+        {
+            if (Price <= 0 || ID <= 0)
+                return BadRequest("Positive values only, please.");
+            
+
+            Stock stock;
+            try
+            {
+                stock = stockModel.searchStock(ID);
+            }
+            catch (System.Exception) { return NotFound("This ID wasn't found :("); }
+
+            try
+            {
+                stock.updatePrice(Price);
+                return Ok("Price successfully updated!");
+            }
+            catch(System.Exception) { return BadRequest("Something has gone horribly wrong."); }
+
         }
         #endregion
     }
