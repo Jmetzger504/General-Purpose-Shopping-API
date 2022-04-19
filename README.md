@@ -55,3 +55,4 @@ No fields have to be filled in using JSON format, and all input parameters are s
 ## Contributors
 Julian Metzger
 ## License
+MIT License
